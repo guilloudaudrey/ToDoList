@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        p {}
+    </style>
+</head>
+
+<body>
+    <h1>TODO LIST</h1>
+    <form method="POST" action="#">
+        <fieldset>
+            <label for="title">title: </label>
+            <input id="title" type="text">
+        </fieldset>
+
+        <fieldset>
+            <label for="comment">comment</label>
+            <input id="comment" type="text" />
+        </fieldset>
+        <input type="submit" value="submit" id="button">
+    </form>
+    <div class="liste">
+        <h1>LIST</h1>
+
+    </div>
+
+
+    <script>
+        let form = document.querySelector("form");
+
+        form.addEventListener("submit", function(e) {
+            let title = document.querySelector("#title").value;
+            let comment = document.querySelector("#comment").value;
+            let p = document.createElement("p");
+            p.innerHTML = title + " " + comment;
+            document.querySelector(".liste").appendChild(p);
+            let button = document.createElement("button");
+            button.textContent = "supprimer";
+            document.querySelector(".liste").appendChild(button);
+
+
+            button.addEventListener("click", function() {
+                let div = document.querySelector('.liste');
+                div.removeChild(p);
+                div.removeChild(button);
+            });
+
+            e.preventDefault();
+
+
+        });
+    </script>
+</body>
+
+</html>
