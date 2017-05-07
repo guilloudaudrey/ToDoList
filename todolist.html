@@ -6,13 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day" rel="stylesheet">
     <style>
-        p {}
+        fieldset {
+            border: none;
+        }
+        
+        form {
+            text-align: center;
+            border-bottom: 1px solid grey;
+            padding-bottom: 20px;
+            background: lightgrey;
+            padding-top: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .liste {
+            padding: 50px;
+        }
+        
+        .liste p {
+            font-family: 'Dawning of a New Day', cursive;
+            font-size: 2em;
+        }
     </style>
 </head>
 
 <body>
-    <h1>TODO LIST</h1>
+    <h1>TO DO LIST</h1>
     <form method="POST" action="#">
         <fieldset>
             <label for="title">title: </label>
@@ -20,8 +44,8 @@
         </fieldset>
 
         <fieldset>
-            <label for="comment">comment</label>
-            <input id="comment" type="text" />
+            <label for="comment">comment: </label>
+            <textarea rows="4" cols="50" name="comment" form="usrform" id="comment"></textarea>
         </fieldset>
         <input type="submit" value="submit" id="button">
     </form>
@@ -37,9 +61,12 @@
         form.addEventListener("submit", function(e) {
             let title = document.querySelector("#title").value;
             let comment = document.querySelector("#comment").value;
+            let h2 = document.createElement("h2");
+            h2.innerHTML = title + " ";
+            document.querySelector(".liste").appendChild(h2);
             let p = document.createElement("p");
-            p.innerHTML = title + " " + comment;
-            document.querySelector(".liste").appendChild(p);
+            p.innerHTML = comment;
+            document.querySelector(".liste").appendChild(p)
             let button = document.createElement("button");
             button.textContent = "supprimer";
             document.querySelector(".liste").appendChild(button);
@@ -47,6 +74,7 @@
 
             button.addEventListener("click", function() {
                 let div = document.querySelector('.liste');
+                div.removeChild(h2);
                 div.removeChild(p);
                 div.removeChild(button);
             });
