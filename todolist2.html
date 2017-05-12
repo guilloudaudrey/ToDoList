@@ -6,27 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Francois+One|La+Belle+Aurore" rel="stylesheet">
     <style>
+        body {
+            background-image: url(hip-square.png);
+            text-align: center;
+        }
+        
         h1 {
             text-align: center;
+            font-family: 'Francois One', sans-serif;
+            font-size: 5em;
+            color: black;
+            letter-spacing: 2px;
+        }
+        
+        #bouton {
+            font-family: 'Anton', sans-serif;
+            width: 100px;
+            height: 50px;
+            background: white;
+            color: black;
         }
         
         fieldset {
             border: none;
         }
         
-        body {
+        input {
+            border-radius: 4px;
+        }
+        
+        ul {
+            position: fixed;
+            margin: auto;
+            margin-top: 50px;
+            padding-top: 50px;
+            width: 60%;
             text-align: center;
         }
         
         li {
             list-style-type: none;
+            font-family: 'La Belle Aurore', cursive;
         }
         
         label {
             display: block;
             text-transform: uppercase;
+        }
+        
+        li .title {
+            font-weight: bold;
         }
     </style>
 </head>
@@ -34,10 +65,7 @@
 <body>
     <h1>TO DO LIST</h1>
     <form method="POST" action="#">
-        <fieldset>
-            <label for="title">title </label>
-            <input id="title" type="text">
-        </fieldset>
+
 
         <fieldset>
             <label for="comment">comment </label>
@@ -45,6 +73,8 @@
         </fieldset>
         <input type="submit" value="submit" id="bouton">
     </form>
+
+    <div class="machine"></div>
 
     <script>
         //Modele de donnee
@@ -71,7 +101,7 @@
                 ul.appendChild(li);
                 let button = document.createElement("button");
                 button.textContent = "X";
-                ul.appendChild(button);
+                li.appendChild(button);
                 button.addEventListener("click", function() {
                     supp(i);
                     afficherListe();
@@ -83,10 +113,8 @@
         let form = document.querySelector("form");
 
         form.addEventListener("submit", function(e) {
-            let title = document.querySelector("#title").value;
             let comment = document.querySelector("#comment").value;
-            ajout(title);
-            ajout(comment);
+            ajout(comment + " ");
             afficherListe();
 
 
