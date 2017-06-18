@@ -6,31 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Anton|Francois+One|La+Belle+Aurore" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Paytone+One" rel="stylesheet">
     <style>
         body {
-            background-image: url(hip-square.png);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .to {
+            color: #ff5eb6;
+        }
+        
+        .do {
+            color: #65ef25;
+        }
+        
+        .list {
+            color: yellow;
         }
         
         h1 {
             text-align: center;
-            font-family: 'Francois One', sans-serif;
+            font-family: 'Paytone One', sans-serif;
             font-size: 5em;
             color: black;
             letter-spacing: 2px;
         }
         
+        #marker {
+            margin-top: -60px;
+            margin-bottom: 10px;
+        }
+        
+        #radio {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
         #bouton {
-            font-family: 'Anton', sans-serif;
+            font-family: 'Paytone One', sans-serif;
             width: 100px;
             height: 50px;
-            background: white;
-            color: black;
+            background: #ff5eb6;
+            color: white;
+            outline: none;
         }
         
         fieldset {
             border: none;
+        }
+        
+        #comment {
+            border: 3px solid #ff5eb6;
+            border-radius: 10px;
+            outline: none;
+            width: 450px;
+            height: 50px;
+            padding-left: 10px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
         
         input {
@@ -38,90 +75,76 @@
         }
         
         ul {
-            position: fixed;
-            margin: auto;
-            margin-top: 50px;
+            margin-top: 20px;
             padding-top: 50px;
-            width: 60%;
+            width: 100%;
+            display: flex;
             text-align: center;
+            flex-wrap: wrap;
         }
         
         li {
             list-style-type: none;
-            font-family: 'La Belle Aurore', cursive;
+            font-family: 'Shadows Into Light', cursive;
+            width: 400px;
+            height: 400px;
+            background: url(hip-square.png) no-repeat;
+            background-size: cover;
+            line-height: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: -20px;
         }
         
-        label {
-            display: block;
-            text-transform: uppercase;
+        #peuurgent,
+        #urgent,
+        #tresurgent {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: normal;
+            font-size: 0.8em;
+            margin-right: 10px;
         }
         
-        li .title {
-            font-weight: bold;
+        .title {
+            display: flex;
+            align-items: center;
+            height: 400px;
+            padding: 50px;
+            font-size: 1.8em;
+            line-height: 1.5em;
+            transform: rotate(-5deg);
+        }
+        
+        button {
+            margin-top: 30px;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            left: -380px;
+            top: -10px;
+            border-radius: 100px;
+            font-family: 'Shadows Into Light', cursive;
         }
     </style>
 </head>
 
 <body>
-    <h1>TO DO LIST</h1>
+    <h1><span class="to">TO</span> <span class="do">DO</span> <span class="list">LIST</span></h1>
+    <div id="marker"><img src="marker.png" alt="surligneur" width="50%"></div>
     <form method="POST" action="#">
-
-
         <fieldset>
-            <label for="comment">comment </label>
-            <textarea rows="8" cols="50" name="comment" form="usrform" id="comment"></textarea>
+
+            <textarea name="comment" form="usrform" id="comment"></textarea><br>
+            <div id="radio">
+                <input type="radio" name="urgence" value="peuurgent"><span id="peuurgent">Rose</span><br>
+                <input type="radio" name="urgence" value="urgent"><span id="urgent">Vert</span><br>
+                <input type="radio" name="urgence" value="tresurgent"><span id="tresurgent">Jaune</span><br>
+            </div>
         </fieldset>
         <input type="submit" value="submit" id="bouton">
     </form>
-
-    <div class="machine"></div>
-
-    <script>
-        //Modele de donnee
-        let liste = [];
-        let ul = document.createElement('ul');
-        document.body.appendChild(ul);
-
-        function ajout(element) {
-            liste.push(element);
-        }
-
-        function supp(element) {
-            liste.splice(element, 1);
-
-        }
-
-
-        //affichage
-        function afficherListe() {
-            ul.textContent = "";
-            for (let i = 0; i < liste.length; i++) {
-                let li = document.createElement("li");
-                li.innerHTML = "<span class='title'>" + liste[i] + "</span>";
-                ul.appendChild(li);
-                let button = document.createElement("button");
-                button.textContent = "X";
-                li.appendChild(button);
-                button.addEventListener("click", function() {
-                    supp(i);
-                    afficherListe();
-                })
-            }
-        }
-
-
-        let form = document.querySelector("form");
-
-        form.addEventListener("submit", function(e) {
-            let comment = document.querySelector("#comment").value;
-            ajout(comment + " ");
-            afficherListe();
-
-
-
-            e.preventDefault();
-
-        });
+    <script type="text/javascript" src="script.js">
     </script>
 </body>
 
