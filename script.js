@@ -1,11 +1,13 @@
  //Modele de donnee
  let liste = [];
+ let couleur = [];
  let ul = document.createElement('ul');
  document.body.appendChild(ul);
  let form = document.querySelector("form");
 
- function ajout(element) {
+ function ajout(element, element1) {
      liste.push(element);
+     couleur.push(element1)
  }
 
  function supp(element) {
@@ -20,36 +22,26 @@
      for (let i = 0; i < liste.length; i++) {
 
 
-         if (form.urgence[0].checked == true) {
+         if (couleur[i] === "peuurgent") {
              let li = document.createElement("li");
              li.className = "peuurgent";
              li.innerHTML = "<span class='title'>" + liste[i] + "</span>";
-             li.style.background = 'url(hip-square.png)';
-             li.style.background.size = "cover";
-             li.style.width = "400px";
-             li.style.height = "400px";
              ul.appendChild(li);
+
          }
 
-         if (form.urgence[1].checked == true) {
+         if (couleur[i] === "urgent") {
              let li = document.createElement("li");
              li.className = "urgent";
              li.innerHTML = "<span class='title'>" + liste[i] + "</span>";
-             li.style.background = 'url(vert.png)';
-             li.style.background.size = "cover";
-             li.style.width = "400px";
-             li.style.height = "400px";
              ul.appendChild(li);
+
          }
 
-         if (form.urgence[2].checked == true) {
+         if (couleur[i] === "tresurgent") {
              let li = document.createElement("li");
-             li.className = "trèsurgent";
+             li.className = "tresurgent";
              li.innerHTML = "<span class='title'>" + liste[i] + "</span>";
-             li.style.background = 'url(jaune.png)';
-             li.style.background.size = "cover";
-             li.style.width = "400px";
-             li.style.height = "400px";
              ul.appendChild(li);
          }
 
@@ -69,8 +61,11 @@
 
  form.addEventListener("submit", function(e) {
          let comment = document.querySelector("#comment").value;
-         ajout(comment + " ");
+         let valuecol = document.querySelector("input[type=radio]:checked").value;
+         console.log(valuecol);
+         ajout(comment, valuecol);
          afficherListe();
+         console.log(couleur);
          e.preventDefault();
      }
 
